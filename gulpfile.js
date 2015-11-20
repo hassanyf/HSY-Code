@@ -32,7 +32,7 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
 gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
     browserSync({
         server: {
-            baseDir: '/_site'
+            baseDir: '_site'
         }
     });
 });
@@ -41,25 +41,25 @@ gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
  * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
  */
 gulp.task('sass', function () {
-    return gulp.src('assets/css/main.scss')
+    return gulp.src('/assets/css/main.scss')
         .pipe(sass({
             includePaths: ['css'],
             onError: browserSync.notify
         }))
         .pipe(plumber())
         .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-        .pipe(gulp.dest('_site/assets/css'))
+        .pipe(gulp.dest('/_site/assets/css'))
         .pipe(browserSync.reload({stream:true}))
-        .pipe(gulp.dest('assets/css'));
+        .pipe(gulp.dest('/assets/css'));
 });
 
 /*
 * Hassan is trying to Gulp stuff
 */
 gulp.task('jade', function() {
-    return gulp.src('_jadefiles/*.jade')
+    return gulp.src('/_jadefiles/*.jade')
     .pipe(jade())
-    .pipe(gulp.dest('_includes'));
+    .pipe(gulp.dest('/_includes'));
 })
 
 /**
