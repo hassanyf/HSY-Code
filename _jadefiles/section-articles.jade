@@ -3,7 +3,7 @@ section.articles#articles
     .col-50
       .article-wrap
         {% for post in site.posts limit:12 %}
-        a(href="{{post.url}}" style="background-image: url({{post.cover}})").article-thumb
+        a(href="{{ site.baseurl }}{{post.url}}" style="background-image: url({{post.cover}})").article-thumb
           .article-meta
             .name {{post.title}}
             .date {{post.date | date: "%b %d, %Y"}}
@@ -13,4 +13,4 @@ section.articles#articles
       .col-1
         .desc-wrap
           p.home-lead.outdented ...Writing and designing articles...
-          a(href="/articles").home-cta See All Articles
+          a(href="{{site.baseurl}}/articles").home-cta See All Articles
